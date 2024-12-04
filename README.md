@@ -8,3 +8,4 @@
 
 회원가입 및 로그인 UI 및 기능 완료
 
+<https://github.com/mingyeol1/lecture-f/blob/main/SignIn.png>
