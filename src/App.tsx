@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import Test from './Test';
+import { Route, Routes } from 'react-router-dom';
+import SignUp from './User/SignUp/SignUp';
+import SignIn from './User/SignIn/SignIn';
 
 
 
 
 function App() {
   return (
-    <div className="App">
-      <Test></Test>
-    </div>
+   <Routes>
+    <Route path='/signup'  element={<SignUp />}/>
+    <Route path='/signin' element ={<SignIn />} />
+
+   </Routes>
   );
 }
 

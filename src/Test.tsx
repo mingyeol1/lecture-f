@@ -21,7 +21,7 @@ const Test = () => {
 
     return (
         <div>
-            <h1>Test API Response</h1>
+            <h1>백엔드 데이트 응답확인</h1>
             <p>{message}</p>
         </div>
     );
