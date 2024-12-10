@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react"
 import { axiosInstance } from "../../config";
 import axios from "axios";
-import "./SignUp.css";
+import "../css/Sign.css"
 
 interface SignUpData {
     userId : string,
