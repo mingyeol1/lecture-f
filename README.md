@@ -16,3 +16,8 @@
 
 ## 로그인 창
 ![로그인 이미지](https://github.com/mingyeol1/lecture-f/blob/main/SignIn.png)
+
+
+
+<br/>
+##  2024-12-06 로그인 시 토큰값 받아오기 완료
