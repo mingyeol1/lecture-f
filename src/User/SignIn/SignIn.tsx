@@ -29,23 +29,21 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     try {
         // 로그인 요청
         const response = await axiosInstance.post("/auth/signIn", signData);
-
         const { accessToken, refreshToken } = response.data;
-
+    
         if (accessToken && refreshToken) {
             // 토큰 저장
             localStorage.setItem("ACCESS_TOKEN", accessToken);
             localStorage.setItem("REFRESH_TOKEN", refreshToken);
-
             alert("로그인 성공");
         } else {
             throw new Error("토큰이 반환되지 않았습니다.");
         }
-    } catch (error) {
+    } catch (error: unknown) {
         console.error("로그인 실패:", error);
         alert("아이디 또는 비밀번호가 잘못되었습니다.");
     }
-};
+}
 
     return (
         <div className="mainBackground">
