@@ -72,49 +72,133 @@ input[readonly] {
 }
 
 .submitButton {
-  width: 100%;
-  max-width: 300px;
-  padding: 12px;
-  background-color: #20C997;
-  color: #FFFFFF;
-  border: none;
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #ffffff;
+  color: #28a745;
+  border: 1px solid #28a745;
   border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.submitButton:hover {
-  background-color: #1AA782;
-}
-
-/* 회원 탈퇴 섹션 */
-.dangerSection {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #CCCCCC;
-  text-align: center;
-}
-
-.deleteButton {
-  width: 100%;
-  max-width: 300px;
-  padding: 12px;
-  background-color: #FFFFFF;
-  color: #dc3545;
-  border: 1px solid #dc3545;
-  border-radius: 5px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.deleteButton:hover {
-  background-color: #dc3545;
-  color: #FFFFFF;
+.submitButton:hover {
+  background-color: #28a745;
+  color: #ffffff;
 }
+
+/* 비밀번호 변경 버튼 스타일 */
+.toggleButton {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #ffffff;
+  color: #007BFF;
+  border: 1px solid #007BFF;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.toggleButton:hover {
+  background-color: #007BFF;
+  color: #ffffff;
+}
+
+/* 회원 탈퇴 토글 버튼 스타일 */
+.deleteToggleButton {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #ffffff;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.deleteToggleButton:hover {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+
+
+
+/* 비밀번호 변경 섹션 내부 여백 조정 */
+.passwordChange {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* input 요소 간 간격 조정 */
+  margin-top: 15px; /* 섹션과의 간격 */
+}
+
+
+
+/* 프로필 이미지 컨테이너 */
+.profileImageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* 프로필 이미지 */
+.profileImage {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 75px;
+  border: 1px solid #ddd;
+}
+
+/* 프로필 이미지 자리 표시자 */
+.profileImagePlaceholder {
+  width: 150px;
+  height: 150px;
+  background-color: #f0f0f0;
+  border-radius: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+}
+
+/* 이미지 업로드 버튼 및 입력창 */
+.imageUploadControls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+#profileImageInput {
+  margin-top: 1rem;
+}
+
+.imageUploadButton {
+  padding: 0.5rem 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.imageUploadButton:hover {
+  background-color: #45a049;
+}
+
+
+
 
 /* 반응형 디자인 */
 @media (min-width: 768px) {

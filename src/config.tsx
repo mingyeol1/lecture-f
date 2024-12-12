@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = 'http://localhost:8080';
+const API_URL = 'http://localhost:8080/api';
 
 // 기본 axios 인스턴스 (로그인용)
 export const axiosInstance = axios.create({
