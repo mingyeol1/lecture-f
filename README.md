@@ -37,3 +37,21 @@
 
 
 ##  2024-12-06 로그인 시 토큰값 받아오기 완료
+
+
+<br/>
+<br/>
+<br/>
+
+## 2024-12-10 회원수정페이지 1 완료.
+
+![회원수정페이지](https://github.com/mingyeol1/lecture-f/blob/main/Modify1.png)
+
+
+<br/>
+<br/>
+<br/>
+
+## 2024-12-12 회원수정페이지 2 s3에 이미지올리기 완료. 
+
+![회원수정페이지](https://github.com/mingyeol1/lecture-f/blob/main/Modify2.png)
