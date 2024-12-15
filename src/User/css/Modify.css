@@ -197,6 +197,13 @@ input[readonly] {
   background-color: #45a049;
 }
 
+.profileImage{
+  width: '150px';
+  height: '150px'; 
+  object-fit: 'cover'; 
+  border-radius: '75px'; 
+}
+
 
 
 

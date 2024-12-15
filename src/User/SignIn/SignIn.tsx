@@ -2,10 +2,12 @@ import { ChangeEvent, useState } from "react";
 import { axiosInstance } from "../../config";
 import { Link } from "react-router-dom";
 import "../css/Sign.css"
+import axios from "axios";
 
 interface SignInData {
     userId : string,
-    userPw : string
+    userPw : string,
+    isDel : boolean
 }
 
 
@@ -14,7 +16,8 @@ function SignIn(){
     //로그인 데이터 받기.
 const [signData, setSignData] = useState<SignInData>({
     userId : "",
-    userPw : ""
+    userPw : "",
+    isDel : false 
 });
 
     //타이핑으로 스테이트 값 변경.
@@ -29,7 +32,12 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     try {
         // 로그인 요청
         const response = await axiosInstance.post("/auth/signIn", signData);
-        const { accessToken, refreshToken } = response.data;
+        const { accessToken, refreshToken, isDel } = response.data;
+        // const {isDel} = response.data;
+
+       
+        
+
     
         if (accessToken && refreshToken) {
             // 토큰 저장
@@ -40,8 +48,19 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
             throw new Error("토큰이 반환되지 않았습니다.");
         }
     } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+        console.log(error.response);
+    
+        // 서버에서 반환된 에러 메시지 확인
+        const errorMessage = error.response?.data;
+    
+        if (errorMessage.includes('삭제된 아이디입니다.')) {
+            alert("삭제된 아이디입니다.");
+        }else{
         console.error("로그인 실패:", error);
         alert("아이디 또는 비밀번호가 잘못되었습니다.");
+           }
+        }
     }
 }
 

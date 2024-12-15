@@ -2,12 +2,13 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import '../css/Modify.css';
 import { authAxiosInstance, axiosInstance } from '../../config';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface UserData {
   userId: string;
   userPw: string;
-  checkPw: string;
-  currentPw: string;
+  newPw: string;
+  checkNewPw: string;
   email: string;
   nickname: string;
   phoneNum: string;
@@ -23,8 +24,8 @@ function Modify() {
   const [userData, setUserData] = useState<UserData>({
     userId: '',
     userPw: '',
-    checkPw: '',
-    currentPw: '',
+    newPw: '',
+    checkNewPw: '',
     email: '',
     nickname: '',
     phoneNum: '',
@@ -36,6 +37,7 @@ function Modify() {
     email: '',
   });
 
+  const navigate = useNavigate();
   const [showPasswordChange, setShowPasswordChange] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -52,7 +54,7 @@ function Modify() {
       .get('/user/getModify')
       .then((response) => {
         const { userId, nickname, email, phoneNum, profileImage } = response.data;
-        setUserData({ userId, nickname, email, phoneNum, userPw: '', checkPw: '', currentPw: '', profileImage });
+        setUserData({ userId, nickname, email, phoneNum, userPw: '', newPw: '', checkNewPw: '', profileImage });
         setOriginData({ nickname, email });
         if (profileImage) {
           setPreviewUrl(profileImage);
@@ -100,6 +102,8 @@ function Modify() {
       const imageUrl = response.data;
       setUserData({ ...userData, profileImage: imageUrl });
       setPreviewUrl(imageUrl);  // 업로드 후 바로 새 이미지 표시
+      // navigate("/modify"); //바로 적용이 안돼서 새로고침.
+      window.location.reload();  //바로 적용이 안돼서 강제로 새로고침.
       alert('프로필 이미지가 업로드되었습니다.');
     } catch (error) {
       console.error('이미지 업로드 실패:', error);
@@ -115,7 +119,7 @@ function Modify() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
-    const { userId, nickname, email, phoneNum, userPw, checkPw, currentPw } = userData;
+    const { userId, nickname, email, phoneNum, userPw, newPw, checkNewPw } = userData;
   
     if (!nickname) {
       alert("닉네임을 입력해주세요");
@@ -131,23 +135,23 @@ function Modify() {
     }
   
     // 비밀번호를 변경하려는 경우에만 비밀번호 검증
-    if (userPw || checkPw) {
-      if (!userPw) {
+    if (newPw || checkNewPw) {
+      if (!newPw) {
         alert("새 비밀번호를 입력해주세요");
         return;
       }
-      if (userPw !== checkPw) {
+      if (newPw !== checkNewPw) {
         alert("새 비밀번호가 일치하지 않습니다.");
         return;
       }
-      if (!currentPw) {
+      if (!userPw) {
         alert("현재 비밀번호를 입력해주세요");
         return;
       }
   
       try {
         // 현재 비밀번호 검증
-        const response = await authAxiosInstance.post("/user/checkPw", { userPw: currentPw });
+        const response = await authAxiosInstance.post("/user/checkPw", { userPw });
       } catch (error) {
         console.error(error);
         alert("현재 비밀번호가 일치하지 않습니다.");
@@ -162,8 +166,8 @@ function Modify() {
         nickname,
         email,
         phoneNum,
-        userPw,  // 비밀번호가 있을 경우만 포함
-        currentPw,  // 비밀번호 변경 시 현재 비밀번호 포함
+        userPw,  // 비밀번호 변경 시 현재 비밀번호 포함
+        newPw,   // 비밀번호가 있을 경우만 포함
       });
       alert('회원 정보가 성공적으로 수정되었습니다.');
     } catch (error: unknown) {
@@ -185,16 +189,19 @@ function Modify() {
   };
 
   const handleDelete = async () => {
-    if (!userData.currentPw) {
+
+    const {userPw} = userData;
+
+    if (!userData.userPw) {
       alert('비밀번호를 입력해주세요.');
       return;
     }
 
     if (window.confirm('정말로 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
       try {
-        await authAxiosInstance.delete('/api/user/delete', { data: { currentPw: userData.currentPw } });
+        await authAxiosInstance.post('/user/remove',  { userPw } );
         alert('회원 탈퇴가 완료되었습니다.');
-        window.location.href = '/';
+        navigate("signin");
       } catch (error) {
         console.error(error);
         alert('회원 탈퇴에 실패했습니다.');
@@ -208,16 +215,24 @@ function Modify() {
         <section className="section">
           <h2 className="sectionTitle">프로필 이미지</h2>
           <div className="profileImageContainer">
-            {previewUrl ? (
-              <img src={previewUrl} alt="프로필 이미지" className="profileImage" style={{ width: '150px', height: '150px', objectFit: 'cover', borderRadius: '75px' }} />
-            ) : (
-              <div className="profileImagePlaceholder"> 이미지 없음 </div>
-            )}
-            <div className="imageUploadControls">
-              <input type="file" accept="image/*" onChange={handleImageChange} style={{ marginTop: '1rem' }} id="profileImageInput" />
-              <button type="button" onClick={handleImageUpload} className="imageUploadButton"> 프로필 변경 </button>
+              {previewUrl ? (
+                <img
+                  src={previewUrl}
+                  alt="프로필 이미지"
+                  className="profileImage"
+                  style={{ width: '150px', height: '150px', objectFit: 'cover', borderRadius: '75px', cursor: 'pointer' }}
+                  onClick={() => document.getElementById('profileImageInput')?.click()}
+                />
+              ) : (
+                <div className="profileImagePlaceholder" style={{ cursor: 'pointer' }} onClick={() => document.getElementById('profileImageInput')?.click()}>
+                  이미지 없음
+                </div>
+              )}
+              <div className="imageUploadControls">
+                <input type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} id="profileImageInput" />
+                <button type="button" onClick={handleImageUpload} className="imageUploadButton"> 프로필 변경 </button>
+              </div>
             </div>
-          </div>
         </section>
 
         <section className="section">
@@ -250,9 +265,9 @@ function Modify() {
           </div>
           {showPasswordChange && (
             <div className="passwordChange">
-              <input name="currentPw" type="password" value={userData.currentPw} onChange={handleChange} placeholder="현재 비밀번호" />
-              <input name="userPw" type="password" value={userData.userPw} onChange={handleChange} placeholder="새 비밀번호" />
-              <input name="checkPw" type="password" value={userData.checkPw} onChange={handleChange} placeholder="새 비밀번호 확인"/>
+              <input name="userPw" type="password" value={userData.userPw} onChange={handleChange} placeholder="현재 비밀번호" />
+              <input name="newPw" type="password" value={userData.newPw} onChange={handleChange} placeholder="새 비밀번호" />
+              <input name="checkNewPw" type="password" value={userData.checkNewPw} onChange={handleChange} placeholder="새 비밀번호 확인"/>
             </div>
           )}
         </section>
@@ -269,7 +284,7 @@ function Modify() {
         </button>
         {showDeleteConfirm && (
           <div className="deleteConfirm">
-            <input name="currentPw" type="password" value={userData.currentPw} onChange={handleChange} placeholder="비밀번호 확인"/>
+            <input name="userPw" type="password" value={userData.userPw} onChange={handleChange} placeholder="비밀번호 확인"/>
             <button className="deleteButton" onClick={handleDelete}> 탈퇴 확인 </button>
           </div>
         )}
