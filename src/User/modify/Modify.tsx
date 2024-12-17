@@ -201,7 +201,7 @@ function Modify() {
       try {
         await authAxiosInstance.post('/user/remove',  { userPw } );
         alert('회원 탈퇴가 완료되었습니다.');
-        navigate("signin");
+        navigate("/signin");
       } catch (error) {
         console.error(error);
         alert('회원 탈퇴에 실패했습니다.');
