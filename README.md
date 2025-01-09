@@ -1,13 +1,8 @@
 # 강의사이트 Front end
 
-<hr>
-
-<br/>
-<br/>
-
-# 프로젝트 기간
-## 2024-12-03 ~
-
+# 개발환경
+## vscord
+## 리액트, 타입스크립트
 
 <hr>
 
@@ -15,7 +10,14 @@
 <br/>
 
 
-2024-12-05 
+
+<hr>
+
+<br/>
+<br/>
+
+
+
 
 회원가입 및 로그인 UI 및 기능 완료
 
@@ -36,14 +38,14 @@
 <br/>
 
 
-##  2024-12-07 로그인 시 토큰값 받아오기 완료
+## 로그인 시 토큰값 받아오기 완료
 
 
 <br/>
 <br/>
 <br/>
 
-## 2024-12-12 회원수정페이지 1 완료.
+## 회원수정페이지 1 완료.
 
 ![회원수정페이지](https://github.com/mingyeol1/lecture-f/blob/main/images/Modify1.png)
 
@@ -52,7 +54,7 @@
 <br/>
 <br/>
 
-## 2024-12-13 회원수정페이지 2 s3에 이미지올리기 완료. 
+## 회원수정페이지 2 s3에 이미지올리기 완료. 
 
 ![회원수정페이지](https://github.com/mingyeol1/lecture-f/blob/main/images/Modify2.png)
 
@@ -62,7 +64,7 @@
 <br/>
 <br/>
 
-## 2024-12-15 회원 이미지 수정 버튼 변경.
+## 회원 이미지 수정 버튼 변경.
  ![회원수정페이지](https://github.com/mingyeol1/lecture-f/blob/main/images/profile.png)
 
 
