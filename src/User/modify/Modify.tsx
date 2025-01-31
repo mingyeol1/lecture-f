@@ -12,7 +12,7 @@ interface UserData {
   email: string;
   nickname: string;
   phoneNum: string;
-  profileImage?: string;
+  profileImage?: string;  //프로필은 있을수도 없을 수도 있음
 }
 
 interface OriginData {
@@ -46,6 +46,7 @@ function Modify() {
   useEffect(() => {
     const token = localStorage.getItem('ACCESS_TOKEN');
     if (!token) {
+      navigate("/signin");
       alert('로그인이 필요한 서비스입니다.');
       return;
     }
@@ -63,6 +64,7 @@ function Modify() {
       .catch((error) => {
         console.error(error);
         if (error.message === 'No token found' || error.response?.status === 401) {
+          navigate("/signin");
           alert('로그인이 필요한 서비스입니다.');
         } else {
           alert('유저 정보를 불러오는 데 실패했습니다.');
@@ -201,6 +203,8 @@ function Modify() {
       try {
         await authAxiosInstance.post('/user/remove',  { userPw } );
         alert('회원 탈퇴가 완료되었습니다.');
+        localStorage.removeItem('ACCESS_TOKEN');  //회원삭제시 토큰삭제
+        localStorage.removeItem('REFRESH_TOKEN'); //회원삭제시 토큰삭제
         navigate("/signin");
       } catch (error) {
         console.error(error);

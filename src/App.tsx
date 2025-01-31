@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Route, Router, Routes } from 'react-router-dom';
-import SignUp from './User/signUp/SignUp';
-import SignIn from './User/signIn/SignIn';
+import SignUp from './User/SignUp/SignUp';
+import SignIn from './User/SignIn/SignIn';
 import Modify from './User/modify/Modify';
 
 
