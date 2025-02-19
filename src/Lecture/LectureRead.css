@@ -1,0 +1,40 @@
+.lecture-board-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  .lecture-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 20px;
+  }
+  
+  .lecture-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .lecture-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .lecture-item:hover {
+    background-color: #eaf6e4;
+  }
+  
+  .lecture-link {
+    font-size: 1.2rem;
+    color: #28a745;
+    text-decoration: none;
+  }
+  
+  .lecture-link:hover {
+    text-decoration: underline;
+  }
+  

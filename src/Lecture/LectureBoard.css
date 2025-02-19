@@ -1,0 +1,32 @@
+.lecture-read-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .lecture-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #28a745;
+  }
+  
+  .lecture-instructor {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  .lecture-content {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .lecture-video {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  

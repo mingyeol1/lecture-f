@@ -1,0 +1,64 @@
+/* BoardList.css */
+.board-container {
+    padding: 24px;
+    max-width: 768px;
+    margin: 0 auto;
+  }
+  
+  .board-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 16px;
+  }
+  
+  .board-input-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .board-input {
+    flex: 1;
+  }
+  
+  .board-add-button {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .board-add-button:hover {
+    background-color: #218838;
+  }
+  
+  .board-list {
+    display: grid;
+    gap: 16px;
+  }
+  
+  .board-card {
+    border: 1px solid #28a745;
+  }
+  
+  .board-card-content {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .board-name {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .board-delete-button {
+    color: red;
+    border-color: red;
+  }
+  
+  .board-delete-button:hover {
+    background-color: red;
+    color: white;
+  }
+  
