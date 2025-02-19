@@ -74,6 +74,14 @@
 <br/>
 <br/>
 
-## 2024-12-15 회원 삭제시 로그인 하려고 할 때 삭제 창 띄움.
+## 회원 삭제시 로그인 하려고 할 때 삭제 창 띄움.
  ![회원삭제](https://github.com/mingyeol1/lecture-f/blob/main/images/userRemove.png)
+
+
+
+ <br/>
+<br/>
+<br/>
+
+## 다중 강의 게시판과 강의 게시판 강의 게시글 페이지네이션 및 강의 상세보기 만듬
 
