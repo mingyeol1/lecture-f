@@ -9,6 +9,8 @@ import MainPage from './Main/MainPage';
 import LectureBoard from './Lecture/LectureBoard';
 import LectureRead from './Lecture/LectureRead';
 import LectureCreate from './Lecture/LectureCreate';
+import { SearchProvider } from './SearchContext';
+import SearchBar from './SearchBar';
 
 
 
@@ -16,20 +18,21 @@ import LectureCreate from './Lecture/LectureCreate';
 function App() {
   return (
 
-    <Routes>
-      <Route path='/signup'  element={<SignUp />}/>
-      <Route path='/signin' element ={<SignIn />} />
-      <Route path='/modify' element ={<Modify />} />
-      <Route path='/createboard' element ={<BoardList />} />
-      <Route path='/lectureboard/:boardId' element={<LectureBoard />} />
-      <Route path='/boards/:boardId/lectures/:lectureId' element={<LectureRead />} />
-      <Route path='/mainpage' element ={<MainPage />} />
-      <Route path='/boards/:boardId/createlecture' element={<LectureCreate />} />
+    
 
- 
-
- 
-    </Routes>
+    <SearchProvider> {/* SearchContext로 감싸서 모든 컴포넌트에서 접근 가능 */}
+      <SearchBar /> {/* 한 번만 추가하여 모든 컴포넌트에서 사용 가능 */}
+      <Routes>
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/signin' element={<SignIn />} />
+        <Route path='/modify' element={<Modify />} />
+        <Route path='/createboard' element={<BoardList />} />
+        <Route path='/lectureboard/:boardId' element={<LectureBoard />} />
+        <Route path='/boards/:boardId/lectures/:lectureId' element={<LectureRead />} />
+        <Route path='/mainpage' element={<MainPage />} />
+        <Route path='/boards/:boardId/createlecture' element={<LectureCreate />} />
+      </Routes>
+    </SearchProvider>
 
   );
 }

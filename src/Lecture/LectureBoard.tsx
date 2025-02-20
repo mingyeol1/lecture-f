@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { authAxiosInstance } from "../config";
 import "./LectureBoard.css";
 import { useParams, useNavigate } from "react-router-dom";
+import { useSearch } from "../SearchContext"; // SearchContext 가져오기
 
 interface Lecture {
   id: number;
@@ -15,6 +16,7 @@ interface Lecture {
 const LectureBoard: React.FC = () => {
   const { boardId } = useParams<{ boardId?: string }>();
   const navigate = useNavigate();
+  const { searchQuery } = useSearch(); // 검색어 가져오기
   const [lectures, setLectures] = useState<Lecture[]>([]);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -23,12 +25,18 @@ const LectureBoard: React.FC = () => {
     if (boardId) {
       fetchLectures(page);
     }
-  }, [page, boardId]);
+  }, [page, boardId, searchQuery]); // 검색어가 바뀔 때마다 fetchLectures 호출
 
   const fetchLectures = async (page: number) => {
     try {
-      const response = await authAxiosInstance.get(`/boards/${boardId}/lectures/all?page=${page}&size=10`);
-      const sortedLectures = response.data.content.sort((a: Lecture, b: Lecture) => {
+      const response = await authAxiosInstance.get(
+        `/boards/${boardId}/lectures/all?page=${page}&size=10`
+      );
+      // 검색어로 필터링
+      const filteredLectures = response.data.content.filter((lecture: Lecture) =>
+        lecture.title.toLowerCase().includes(searchQuery.toLowerCase()) // 검색어 필터링
+      );
+      const sortedLectures = filteredLectures.sort((a: Lecture, b: Lecture) => {
         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(); // 최신순으로 정렬
       });
       setLectures(sortedLectures);
