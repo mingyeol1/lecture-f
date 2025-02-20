@@ -1,32 +1,104 @@
-.lecture-read-container {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
-  }
-  
-  .lecture-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #28a745;
-  }
-  
-  .lecture-instructor {
-    font-size: 1.2rem;
-    color: #555;
-    margin: 10px 0;
-  }
-  
-  .lecture-content {
-    font-size: 1rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .lecture-video {
-    width: 100%;
-    margin-top: 20px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-  }
-  
+.lecture-board-container {
+  max-width: 1700px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.lecture-title {
+  font-size: 28px;
+  color: #28a745;
+  margin-bottom: 20px;
+}
+
+.lecture-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 한 줄에 5개씩 */
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.lecture-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.lecture-card:hover {
+  transform: translateY(-5px);
+}
+
+.lecture-thumbnail {
+  width: 100%;
+  height: 200px; /* 이미지 높이 조정 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f3f3;
+  overflow: hidden;
+}
+
+.lecture-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지 비율 맞추기 */
+}
+
+.no-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-size: 18px;
+  font-weight: bold;
+  background: #ddd;
+}
+
+.lecture-card-title {
+  font-size: 14px; /* 제목 폰트 크기 줄이기 */
+  font-weight: bold;
+  padding: 5px 10px; /* padding 줄이기 */
+  color: #333;
+  flex-grow: 1; /* 제목이 길어질 경우를 대비해 유연하게 */
+}
+
+.lecture-card-instructor {
+  font-size: 12px; /* 강사 폰트 크기 줄이기 */
+  color: #666;
+  padding: px 20px; /* padding 줄이기 */
+}
+
+.lecture-rating {
+  font-size: 12px; /* 별점 폰트 크기 줄이기 */
+  color: #ffd700;
+  padding: 5px 10px; /* padding 줄이기 */
+  margin-bottom: 10px;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 15px;
+  margin: 0 5px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
