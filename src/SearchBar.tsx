@@ -1,29 +1,34 @@
-import React, { useState } from 'react';
-import { useSearch } from './SearchContext'; // SearchContext 가져오기
+import React, { useState } from "react";
+import { useSearch } from "./SearchContext"; // Context 사용
 import "./SearchBar.css";
 
-const SearchBar: React.FC = () => {
-  const { searchQuery, setSearchQuery } = useSearch(); // 검색어와 setter 함수
-  const [inputValue, setInputValue] = useState(searchQuery); // 로컬 상태로 검색어 관리
+interface SearchBarProps {
+  boardId: number; // 게시판 ID를 props로 받음
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ boardId }) => {
+  const { searchQuery, setSearchQuery } = useSearch(); // Context에서 검색어 관리
+  const [inputValue, setInputValue] = useState(searchQuery); // 로컬 상태
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value); // 입력값 상태 변경
+    setInputValue(e.target.value);
   };
 
-  const handleSearchSubmit = () => {
-    setSearchQuery(inputValue); // 검색어를 Context에 업데이트
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSearchQuery(inputValue); // 검색어를 Context에 저장
   };
 
   return (
-    <div className="search-bar">
+    <form onSubmit={handleSearchSubmit} className="search-bar-container">
       <input
         type="text"
         value={inputValue}
         onChange={handleSearchChange}
-        placeholder="검색어를 입력하세요"
+        placeholder="제목, 작성자 닉네임으로 검색"
       />
-      <button onClick={handleSearchSubmit}>검색</button>
-    </div>
+      <button type="submit">검색</button>
+    </form>
   );
 };
 

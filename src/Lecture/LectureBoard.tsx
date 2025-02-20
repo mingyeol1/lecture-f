@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { authAxiosInstance } from "../config";
-import "./LectureBoard.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSearch } from "../SearchContext"; // SearchContext 가져오기
+import "./LectureBoard.css";
 
 interface Lecture {
   id: number;
@@ -34,7 +34,8 @@ const LectureBoard: React.FC = () => {
       );
       // 검색어로 필터링
       const filteredLectures = response.data.content.filter((lecture: Lecture) =>
-        lecture.title.toLowerCase().includes(searchQuery.toLowerCase()) // 검색어 필터링
+        lecture.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        lecture.uploaderNickname.toLowerCase().includes(searchQuery.toLowerCase()) // 제목, 작성자 필터링
       );
       const sortedLectures = filteredLectures.sort((a: Lecture, b: Lecture) => {
         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(); // 최신순으로 정렬
