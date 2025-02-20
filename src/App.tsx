@@ -8,6 +8,7 @@ import BoardList from './Board/BoardCreate';
 import MainPage from './Main/MainPage';
 import LectureBoard from './Lecture/LectureBoard';
 import LectureRead from './Lecture/LectureRead';
+import LectureCreate from './Lecture/LectureCreate';
 
 
 
@@ -19,10 +20,11 @@ function App() {
       <Route path='/signup'  element={<SignUp />}/>
       <Route path='/signin' element ={<SignIn />} />
       <Route path='/modify' element ={<Modify />} />
-      <Route path='/creatboard' element ={<BoardList />} />
+      <Route path='/createboard' element ={<BoardList />} />
       <Route path='/lectureboard/:boardId' element={<LectureBoard />} />
       <Route path='/boards/:boardId/lectures/:lectureId' element={<LectureRead />} />
       <Route path='/mainpage' element ={<MainPage />} />
+      <Route path='/boards/:boardId/createlecture' element={<LectureCreate />} />
 
  
 
