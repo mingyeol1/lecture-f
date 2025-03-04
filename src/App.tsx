@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
-import { Route, Router, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom'; // useLocation 추가
 import SignUp from './User/SignUp/SignUp';
 import SignIn from './User/SignIn/SignIn';
 import Modify from './User/modify/Modify';
@@ -12,17 +12,17 @@ import LectureCreate from './Lecture/LectureCreate';
 import { SearchProvider } from './SearchContext';
 import SearchBar from './SearchBar';
 
-
-
-
 function App() {
-   const boardId = 1; // 📌 원하는 boardId 값 지정 (동적으로 받을 경우 로직 추가)
+  const location = useLocation(); // 현재 경로 확인
+  const boardId = 1; // 📌 원하는 boardId 값 지정 (동적으로 받을 경우 로직 추가)
+
+  // LectureBoard 경로일 때만 SearchBar를 렌더링
+  const isLectureBoard = location.pathname.startsWith('/lectureboard');
+
   return (
-
-    
-
-    <SearchProvider> {/* SearchContext로 감싸서 모든 컴포넌트에서 접근 가능 */}
-       <SearchBar boardId={boardId} /> {/* boardId를 넘겨줘야 함 */}
+    <SearchProvider>
+      {/* LectureBoard 경로일 때만 SearchBar 렌더링 */}
+      {isLectureBoard && <SearchBar boardId={boardId} />}
       <Routes>
         <Route path='/signup' element={<SignUp />} />
         <Route path='/signin' element={<SignIn />} />
@@ -34,7 +34,6 @@ function App() {
         <Route path='/boards/:boardId/createlecture' element={<LectureCreate />} />
       </Routes>
     </SearchProvider>
-
   );
 }
 

@@ -1,38 +1,63 @@
 .board-list-container {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .board-list-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #28a745;
-  }
-  
-  .board-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .board-item {
-    padding: 15px;
-    margin-bottom: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .board-item:hover {
-    background-color: #eaf6e4;
-  }
-  
-  .board-link {
-    font-size: 1.2rem;
-    color: #28a745;
-    text-decoration: none;
-  }
-  
-  .board-link:hover {
-    text-decoration: underline;
-  }
-  
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.board-list-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.board-list {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.board-item {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.board-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.board-link {
+  font-size: 1.2rem;
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
+
+.board-link h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #00c471;
+}
+
+.board-link p {
+  margin: 10px 0 0;
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.board-link:hover {
+  text-decoration: none;
+}
+
+.board-link:hover h3 {
+  text-decoration: underline;
+}

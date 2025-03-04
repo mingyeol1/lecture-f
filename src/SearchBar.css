@@ -1,20 +1,71 @@
-.search-bar {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-  }
-  
-  .search-bar input {
-    padding: 10px;
-    font-size: 16px;
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .search-bar button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #28a745;
-    color: white;
-  }
+.search-bar-container {
+  width: 50%; /* 너비를 50%로 설정 */
+  display: flex;
+  justify-content: center; /* 내부 요소 가운데 정렬 */
+  margin: 20px auto; /* 상하 여백 20px, 좌우 여백 자동으로 가운데 정렬 */
+}
+
+.search-bar-container input {
+  padding: 8px 12px; /* 패딩 조정 */
+  font-size: 14px; /* 폰트 크기 조정 */
+  width: 70%; /* 검색창 너비를 컨테이너의 70%로 설정 */
+  border: 1px solid #e0e0e0; /* 연한 회색 테두리 */
+  border-radius: 25px 0 0 25px; /* 왼쪽 모서리만 둥글게 */
+  outline: none; /* 포커스 시 기본 아웃라인 제거 */
+  transition: border-color 0.3s ease; /* 부드러운 테두리 색상 변화 */
+}
+
+.search-bar-container input:focus {
+  border-color: #00c471; /* 초록색 테두리로 변경 (인프런 스타일) */
+}
+
+.search-bar-container button {
+  padding: 6px 12px; /* 패딩 조정 (더 작게) */
+  font-size: 12px; /* 폰트 크기 조정 (더 작게) */
+  background-color: #00c471; /* 초록색 배경 (인프런 스타일) */
+  color: white;
+  border: none;
+  border-radius: 0 25px 25px 0; /* 오른쪽 모서리만 둥글게 */
+  cursor: pointer; /* 버튼에 마우스 포인터 추가 */
+  transition: background-color 0.3s ease; /* 부드러운 배경색 변화 */
+  width: 20%; /* 버튼 너비를 컨테이너의 20%로 설정 (더 작게) */
+}
+
+.search-bar-container button:hover {
+  background-color: #00a85d; /* 호버 시 더 진한 초록색 */
+}.search-bar-container {
+  width: 50%; /* 너비를 50%로 설정 */
+  display: flex;
+  justify-content: center; /* 내부 요소 가운데 정렬 */
+  margin: 20px auto; /* 상하 여백 20px, 좌우 여백 자동으로 가운데 정렬 */
+}
+
+.search-bar-container input {
+  padding: 8px 12px; /* 패딩 조정 */
+  font-size: 14px; /* 폰트 크기 조정 */
+  width: 70%; /* 검색창 너비를 컨테이너의 70%로 설정 */
+  border: 1px solid #e0e0e0; /* 연한 회색 테두리 */
+  border-radius: 25px 0 0 25px; /* 왼쪽 모서리만 둥글게 */
+  outline: none; /* 포커스 시 기본 아웃라인 제거 */
+  transition: border-color 0.3s ease; /* 부드러운 테두리 색상 변화 */
+}
+
+.search-bar-container input:focus {
+  border-color: #00c471; /* 초록색 테두리로 변경 (인프런 스타일) */
+}
+
+.search-bar-container button {
+  padding: 6px 12px; /* 패딩 조정 (더 작게) */
+  font-size: 12px; /* 폰트 크기 조정 (더 작게) */
+  background-color: #00c471; /* 초록색 배경 (인프런 스타일) */
+  color: white;
+  border: none;
+  border-radius: 0 25px 25px 0; /* 오른쪽 모서리만 둥글게 */
+  cursor: pointer; /* 버튼에 마우스 포인터 추가 */
+  transition: background-color 0.3s ease; /* 부드러운 배경색 변화 */
+  width: 10%; /* 버튼 너비를 컨테이너의 20%로 설정 (더 작게) */
+}
+
+.search-bar-container button:hover {
+  background-color: #00a85d; /* 호버 시 더 진한 초록색 */
+}
