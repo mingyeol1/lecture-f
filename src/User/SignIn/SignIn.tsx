@@ -35,7 +35,9 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { accessToken, refreshToken, isDel } = response.data;
         // const {isDel} = response.data;
 
-       
+       if(isDel){
+        throw new Error("삭제된 아이디입니다.")
+       }
         
 
     
@@ -49,19 +51,17 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         }
     } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
-        console.log(error.response);
+            console.log("서버 응답:", error.response); // 서버 응답 확인
     
-        // 서버에서 반환된 에러 메시지 확인
-        const errorMessage = error.response?.data;
+            const errorData = error.response?.data;
+            const errorMessage = typeof errorData === 'string' 
+                ? errorData
+                : errorData?.message || 'unknown error';
     
-        if (errorMessage.includes('삭제된 아이디입니다.')) {
-            alert("삭제된 아이디입니다.");
-        }else if(errorMessage.includes('아이디 및 비밀번호가 다릅니다.')){
-        console.error("로그인 실패:", error);
-        alert("아이디 또는 비밀번호가 잘못되었습니다.");
-           }
+            alert(`로그인 실패: ${errorMessage}`);
         }
     }
+    
 }
 
     return (

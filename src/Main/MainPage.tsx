@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./MainPage.css";
-import { authAxiosInstance } from "../config";  // Assume axiosInstance is properly set up.
+import { authAxiosInstance, axiosInstance } from "../config";  // Assume axiosInstance is properly set up.
 
 interface Board {
   id: number;
@@ -18,12 +18,13 @@ const MainPage: React.FC = () => {
 
   const fetchBoards = async () => {
     try {
-      const response = await authAxiosInstance.get<Board[]>("/boards");
-      setBoards(response.data);
+        const response = await axiosInstance.get<Board[]>("/boards"); // 인증 없이 조회
+        setBoards(response.data);
     } catch (error) {
-      console.error("게시판 목록을 불러오는 중 오류 발생:", error);
+        console.error("게시판 목록을 불러오는 중 오류 발생:", error);
     }
-  };
+};
+
 
   return (
     <div className="board-list-container">

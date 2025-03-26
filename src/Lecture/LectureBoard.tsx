@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { authAxiosInstance } from "../config";
+import { authAxiosInstance, axiosInstance } from "../config";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSearch } from "../SearchContext"; // SearchContext 가져오기
 import "./LectureBoard.css";
@@ -29,7 +29,7 @@ const LectureBoard: React.FC = () => {
 
   const fetchLectures = async (page: number) => {
     try {
-      const response = await authAxiosInstance.get(
+      const response = await axiosInstance.get(
         `/boards/${boardId}/lectures/all?page=${page}&size=10`
       );
       // 검색어로 필터링
