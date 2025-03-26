@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = 'http://localhost:8080/api';
 
-// 기본 axios 인스턴스 (로그인용)
+// 기본 axios 인스턴스 (로그인 및 토큰 인증이 필요없을)
 export const axiosInstance = axios.create({
     withCredentials: true,
     baseURL: API_URL,
