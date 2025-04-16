@@ -29,7 +29,7 @@ const LectureBoard: React.FC = () => {
 
   const fetchLectures = async (page: number) => {
     try {
-      const response = await axiosInstance.get(
+      const response = await authAxiosInstance.get(
         `/boards/${boardId}/lectures/all?page=${page}&size=10`
       );
       // 검색어로 필터링

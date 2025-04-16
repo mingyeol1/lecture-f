@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 interface SearchContextType {
   searchQuery: string;
@@ -21,6 +22,12 @@ interface SearchProviderProps {
 
 export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const location = useLocation();
+
+  // 게시판이 변경될 때마다 검색어 초기화
+  useEffect(() => {
+    setSearchQuery('');
+  }, [location.pathname]); //pathname은 도메인 경로를 의미함
 
   return (
     <SearchContext.Provider value={{ searchQuery, setSearchQuery }}>
